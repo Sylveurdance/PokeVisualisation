@@ -20,13 +20,7 @@ class Pokemon:
 		self.attaques = attaques
 
 	def __str__(self):
-		return "numero : "+self.numero+"\nname : "+self.name
-		+"\ntype1 : "+self.type1+"\ntype2 : "+self.type2
-		+"\ngenre : "+self.genre+"\ncapacite1 : "+self.capacite1
-		+"\ncapacite2 : "+self.capacite2+"\npv : "+self.pv
-		+"\nattaque : "+self.attaque+"\ndefense : "+self.defense
-		+"\natt_spe : "+self.att_spe+"\ndef_spe : "+self.def_spe
-		+"\nvitesse : "+self.vitesse+"\nattaques : "+str(self.attaques)
+		return "numero : "+self.numero+"\nname : "+self.name+"\ntype1 : "+self.type1+"\ntype2 : "+self.type2+"\ngenre : "+self.genre+"\ncapacite1 : "+self.capacite1+"\ncapacite2 : "+self.capacite2+"\npv : "+self.pv+"\nattaque : "+self.attaque+"\ndefense : "+self.defense+"\natt_spe : "+self.att_spe+"\ndef_spe : "+self.def_spe+"\nvitesse : "+self.vitesse+"\nattaques : "+str(self.attaques)
 
 	def serialize_pokemon(self):
 		return {"__class__": "Pokemon",
@@ -75,10 +69,7 @@ class Attaque:
 		self.effect = effect
 
 	def __str__(self):
-		return "numero : "+str(self.numero)+"\nname : "+self.name
-		+"\na_type : "+self.a_type+"\npuissance : "+self.puissance
-		+"\nprecision : "+self.precision+"\npp : "+str(self.pp)
-		+"\nclasse : "+self.classe+"\neffect : "+self.effect
+		return "numero : "+str(self.numero)+"\nname : "+self.name+"\na_type : "+self.a_type+"\npuissance : "+self.puissance+"\nprecision : "+self.precision+"\npp : "+str(self.pp)+"\nclasse : "+self.classe+"\neffect : "+self.effect
 
 	def serialize_attaque(self):
 		return {"__class__": "Attaque",
@@ -102,7 +93,7 @@ class Attaque:
 		self.effect = attaque_dict["effect"]
 		return self
 
-# Serialise an object in a dictionary so that it can be putted in a json file properly
+# Serialises an object in a dictionary so that it can be putted in a json file properly
 def serialiseur_json(obj):
 
 	# If it's a Pokemon object
@@ -116,7 +107,7 @@ def serialiseur_json(obj):
 	# Otherwise
 	raise TypeError(repr(obj) + " is not serialisable !")
 
-# Deserialise a dictionary object to get a real object
+# Deserialises a dictionary object to get a real object
 def deserialiseur_json(obj_dict):
 	if "__class__" in obj_dict:
 		if obj_dict["__class__"] == "Pokemon":
@@ -129,3 +120,21 @@ def deserialiseur_json(obj_dict):
 			obj.deserialize_attaque(obj_dict)
 			return obj
 	return objet
+
+# Gets the type's category
+# Returns 0 for other, 1 for physical, 2 for special and 3 for physical and special (two types)
+def getTypeCategory(typeNum, typeNum2):
+	# Tests if it's physical
+	if typeNum in [1, 2, 8, 9, 11, 13, 14, 15, 17]:
+		if typeNum2 in [2, 3, 4, 5, 6, 7, 10, 12, 16]:
+			return 3
+		else:
+			return 1
+	# Tests if it's special
+	elif typeNum in [2, 3, 4, 5, 6, 7, 10, 12, 16]:
+		if typeNum2 in [1, 2, 8, 9, 11, 13, 14, 15, 17]:
+			return 3
+		else:
+			return 2
+	else:
+		return 0
