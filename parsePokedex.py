@@ -103,8 +103,8 @@ for id_attaque in range(1,354):
 	list_of_attaques.append(parseAttaques(id_attaque))
 
 # Put into JSON files
-with codecs.open("pokedex.json", "w", encoding='utf8') as poke_fichier:
+with codecs.open("./data/pokedex.json", "w", encoding='utf8') as poke_fichier:
 	json.dump(pokedex, poke_fichier, indent=4, ensure_ascii=False, encoding='utf8', default=pokemon.serialiseur_json)
 
-with codecs.open("attaques.json", "w", encoding='utf8') as att_fichier:
+with codecs.open("./data/attaques.json", "w", encoding='utf8') as att_fichier:
 	json.dump(list_of_attaques, att_fichier, indent=4, ensure_ascii=False, encoding='utf8', default=pokemon.serialiseur_json)
