@@ -6,3 +6,5 @@ Improvements :
 - Graph Visualization Pokemon/Attaques
 - Make an Expert System (Tree made by human) and compare it with a Decision Tree (Tree made by computer (after a training)) with more rules
 
+![alt tag](https://raw.github.com/Sylveurdance/PokeVisualisation/master/img/statsVisu3DKMeans5.png)
+
